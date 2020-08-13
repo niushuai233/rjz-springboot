@@ -17,7 +17,7 @@ public class BizExceptionConfig {
 
     @ExceptionHandler({BizException.class})
     public R handleBizExceptionConfig(BizException e) {
-        return R.builder().statusCode(e.getCode()).message(e.getMessage()).build();
+        return R.builder().code(e.getCode()).msg(e.getMessage()).build();
     }
 
     @ExceptionHandler({NoHandlerFoundException.class})
