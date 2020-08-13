@@ -1,4 +1,4 @@
-package cc.niushuai.rjz.config;
+package cc.niushuai.rjz.common.config;
 
 import org.springframework.context.annotation.Configuration;
 

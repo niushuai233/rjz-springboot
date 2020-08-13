@@ -1,4 +1,4 @@
-package cc.niushuai.rjz.config;
+package cc.niushuai.rjz.common.config;
 
 import cc.niushuai.rjz.common.bean.R;
 import cc.niushuai.rjz.common.enums.ResultStatusEnum;

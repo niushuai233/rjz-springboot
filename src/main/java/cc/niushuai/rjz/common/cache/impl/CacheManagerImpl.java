@@ -11,7 +11,7 @@ import java.util.Set;
 @Component
 public class CacheManagerImpl implements CacheManager {
 
-    private static final Map<String, CacheManagerEntity> caches = new HashMap<>();
+    private static final Map<String, CacheManagerEntity> CACHE_DATAS = new HashMap<>();
 
     /**
      * 存入缓存
@@ -21,7 +21,7 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public void putCache(String key, CacheManagerEntity cache) {
-        caches.put(key, cache);
+        CACHE_DATAS.put(key, cache);
     }
 
     /**
@@ -58,7 +58,7 @@ public class CacheManagerImpl implements CacheManager {
     @Override
     public CacheManagerEntity getCacheByKey(String key) {
         if (this.isContains(key)) {
-            return caches.get(key);
+            return CACHE_DATAS.get(key);
         }
         return null;
     }
@@ -72,7 +72,7 @@ public class CacheManagerImpl implements CacheManager {
     @Override
     public Object getCacheDataByKey(String key) {
         if (this.isContains(key)) {
-            return caches.get(key).getDatas();
+            return CACHE_DATAS.get(key).getDatas();
         }
         return null;
     }
@@ -84,7 +84,7 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public Map<String, CacheManagerEntity> getCacheAll() {
-        return caches;
+        return CACHE_DATAS;
     }
 
     /**
@@ -95,7 +95,7 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public boolean isContains(String key) {
-        return caches.containsKey(key);
+        return CACHE_DATAS.containsKey(key);
     }
 
     /**
@@ -103,7 +103,7 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public void clearAll() {
-        caches.clear();
+        CACHE_DATAS.clear();
     }
 
     /**
@@ -114,7 +114,7 @@ public class CacheManagerImpl implements CacheManager {
     @Override
     public void clearByKey(String key) {
         if (this.isContains(key)) {
-            caches.remove(key);
+            CACHE_DATAS.remove(key);
         }
     }
 
@@ -123,7 +123,7 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public boolean isEmpty() {
-        return caches.isEmpty();
+        return CACHE_DATAS.isEmpty();
     }
 
     /**
@@ -134,10 +134,10 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public boolean isTimeOut(String key) {
-        if (!caches.containsKey(key)) {
+        if (!CACHE_DATAS.containsKey(key)) {
             return true;
         }
-        CacheManagerEntity cache = caches.get(key);
+        CacheManagerEntity cache = CACHE_DATAS.get(key);
         long timeOut = cache.getTimeOut();
         long lastRefreshTime = cache.getLastRefeshTime();
         return timeOut == 0 || System.currentTimeMillis() - lastRefreshTime >= timeOut;
@@ -150,6 +150,6 @@ public class CacheManagerImpl implements CacheManager {
      */
     @Override
     public Set<String> getAllKeys() {
-        return caches.keySet();
+        return CACHE_DATAS.keySet();
     }
 }

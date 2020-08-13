@@ -4,8 +4,8 @@ server:
     context-path: /api
 wechat:
   account: gh_0f38c1055be5
-  appid: wx22fe4cc0635b989d
-  appsecret: d3afbeefd799e8e7b71bd5e854e692b4
+  appid: wxd484501fb9ebeb22
+  appsecret: 7aac14ef8476bd36a6e45a3ff8a4b1de
 spring:
   application:
     name: rjz-springboot
@@ -19,3 +19,4 @@ logging:
     name: ./logs/${random.uuid}.log
   level:
     root: INFO
+    cc.niushuai: DEBUG

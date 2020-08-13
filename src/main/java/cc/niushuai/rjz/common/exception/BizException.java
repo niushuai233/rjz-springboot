@@ -33,6 +33,12 @@ public class BizException extends RuntimeException {
         this.code = code;
     }
 
+    public BizException(ResultStatusEnum resultStatusEnum) {
+        super(resultStatusEnum.getDescription());
+        this.code = resultStatusEnum.getCode();
+        this.msg = resultStatusEnum.getDescription();
+    }
+
     public String getMsg() {
         return this.msg;
     }
