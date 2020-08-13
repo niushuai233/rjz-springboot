@@ -68,6 +68,9 @@ public class UserToken {
      */
     @TableField(value = "expire_time")
     private Date expireTime;
+
+    @TableField(exist = false)
+    private long expireTimeMills;
     /**
      * 操作系统
      */

@@ -13,6 +13,7 @@ import cc.niushuai.rjz.user.entity.UserInfo;
 import cc.niushuai.rjz.user.entity.UserToken;
 import cc.niushuai.rjz.user.service.UserInfoService;
 import cc.niushuai.rjz.user.service.UserTokenService;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
@@ -76,6 +77,7 @@ public class UserInfoController {
             // 生成token
             String userAgentString = request.getHeader(KeyConstant.USER_AGENT);
             UserAgent userAgent = UserAgentUtil.parse(userAgentString);
+            DateTime expireTime = DateUtil.offsetHour(new Date(), 1);
             userInfo.setUserToken(
                     UserToken.builder()
                             .userId(userInfo.getId())
@@ -84,7 +86,8 @@ public class UserInfoController {
                             .browser(userAgent.getBrowser().getName())
                             .version(userAgent.getVersion())
                             .token(TokenGenerateUtil.generateToken())
-                            .expireTime(DateUtil.offsetHour(new Date(), 1))
+                            .expireTime(expireTime)
+                            .expireTimeMills(expireTime.toTimestamp().getTime())
                             .userAgent(userAgentString)
                             .isExpire(0)
                             .build()
