@@ -16,10 +16,12 @@ public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = -1131681874214638255L;
 
     private int statusCode;
+
     @Builder.Default
     private String message = "success";
 
-    private Map<String, Object> data;
+    @Builder.Default
+    private Map<String, Object> data = new HashMap<>();
 
     public static R error() {
         return error(ResultStatusEnum.HTTP_500);
@@ -62,6 +64,11 @@ public class R extends HashMap<String, Object> {
     @Override
     public R put(String key, Object value) {
         super.put(key, value);
+        return this;
+    }
+
+    public R put2Data(String key, Object value) {
+        this.getData().put(key, value);
         return this;
     }
 }
