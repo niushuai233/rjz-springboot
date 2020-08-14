@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.niushuai.rjz.bill.mapper.BillNoteMapper">
+  <resultMap id="BaseResultMap" type="cc.niushuai.rjz.bill.entity.BillNote">
+    <!--@mbg.generated-->
+    <!--@Table bil_bill_note-->
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="category_id" property="categoryId" />
+    <result column="icon" property="icon" />
+    <result column="category_name" property="categoryName" />
+    <result column="bill_year" property="billYear" />
+    <result column="bill_month" property="billMonth" />
+    <result column="bill_day" property="billDay" />
+    <result column="bill_type" property="billType" />
+    <result column="price" property="price" />
+    <result column="pay_income_note" property="payIncomeNote" />
+    <result column="is_delete" property="isDelete" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, icon, category_id,category_name, bill_year, bill_month, bill_day, bill_type, price, pay_income_note, is_delete,
+    create_time, update_time
+  </sql>
+</mapper>
