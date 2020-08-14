@@ -1,22 +1,3 @@
-server:
-  port: 9091
-  servlet:
-    context-path: /api
-wechat:
-  account: gh_0f38c1055be5
-  appid: wxd484501fb9ebeb22
-  appsecret: 7aac14ef8476bd36a6e45a3ff8a4b1de
 spring:
-  application:
-    name: rjz-springboot
-  datasource:
-    url: jdbc:mysql://47.244.169.240:65533/rjz_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true&allowMultiQueries=true
-    username: root
-    password: Shuairr1215.
-    driver-class-name: com.mysql.cj.jdbc.Driver
-logging:
-  file:
-    name: ./logs/${random.uuid}.log
-  level:
-    root: INFO
-    cc.niushuai: DEBUG
+  profiles:
+    active: local
