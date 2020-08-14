@@ -1,7 +1,7 @@
 package cc.niushuai.rjz.user.controller;
 
 import cc.niushuai.rjz.common.bean.R;
-import cc.niushuai.rjz.common.cache.CacheManager;
+import cc.niushuai.rjz.common.cache.ICacheManager;
 import cc.niushuai.rjz.common.enums.ResultStatusEnum;
 import cc.niushuai.rjz.common.exception.BizException;
 import cc.niushuai.rjz.common.util.KeyConstant;
@@ -52,7 +52,7 @@ public class UserInfoController {
     @Resource
     private UserTokenService userTokenService;
     @Resource
-    private CacheManager cacheManager;
+    private ICacheManager ICacheManager;
 
     @PostMapping("/login")
     public R login(HttpServletRequest request, @RequestBody UserInfo userInfo) {
@@ -93,12 +93,12 @@ public class UserInfoController {
                             .build()
             );
             // 缓存token 到 map 拦截器使用
-            Map<String, UserInfo> dataByKey = (Map<String, UserInfo>) cacheManager.getCacheDataByKey(KeyConstant.USER_TOKEN);
+            Map<String, UserToken> dataByKey = (Map<String, UserToken>) ICacheManager.getCacheDataByKey(KeyConstant.USER_TOKEN);
             if (null == dataByKey) {
                 dataByKey = new HashMap<>();
             }
-            dataByKey.put(userInfo.getUserToken().getToken(), userInfo);
-            cacheManager.putCache(KeyConstant.USER_TOKEN, dataByKey);
+            dataByKey.put(userInfo.getUserToken().getToken(), userInfo.getUserToken());
+            ICacheManager.putCache(KeyConstant.USER_TOKEN, dataByKey);
 
             userTokenService.save(userInfo.getUserToken());
         }

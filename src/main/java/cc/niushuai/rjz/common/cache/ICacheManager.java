@@ -5,7 +5,7 @@ import cc.niushuai.rjz.common.cache.bean.CacheManagerEntity;
 import java.util.Map;
 import java.util.Set;
 
-public interface CacheManager {
+public interface ICacheManager {
 
     /**
      * 存入缓存

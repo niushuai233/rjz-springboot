@@ -22,6 +22,8 @@ public enum ResultStatusEnum {
      */
     WX_OPEN_ID_NULL(1502, "wx login tmp code is null"),
     WX_CODE_SESSION_FAILURE(1502, "wx login tmp code is null"),
+    TOKEN_NOT_EXIST(1503, "token 不存在, 请重新登陆"),
+    TOKEN_VAILD(1503, "token 失效, 请重新登陆"),
     TEST(99999, "test");
 
     /**

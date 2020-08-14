@@ -1,23 +1,21 @@
 package cc.niushuai.rjz.common.bean;
 
 import cc.niushuai.rjz.common.enums.ResultStatusEnum;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class R extends HashMap<String, Object> {
-
     private static final long serialVersionUID = -1131681874214638255L;
 
-    private int code;
-    @Builder.Default
-    private String msg = "success";
+    public R() {
+        this.put("code", 0);
+        this.put("msg", "success");
+    }
 
     public static R error() {
         return error(ResultStatusEnum.HTTP_500);
@@ -28,11 +26,17 @@ public class R extends HashMap<String, Object> {
     }
 
     public static R error(int code, String msg) {
-        return R.builder().code(code).msg(msg).build();
+        R r = new R();
+        r.put("code", code);
+        r.put("msg", msg);
+        return r;
     }
 
     public static R ok(int code, String msg) {
-        return R.builder().code(code).msg(msg).build();
+        R r = new R();
+        r.put("code", code);
+        r.put("msg", msg);
+        return r;
     }
 
     public static R error(ResultStatusEnum resultStatusEnum) {
@@ -44,17 +48,19 @@ public class R extends HashMap<String, Object> {
     }
 
     public static R ok(String msg) {
-        return R.builder().msg(msg).build();
+        R r = new R();
+        r.put("msg", msg);
+        return r;
     }
 
     public static R ok(Map<String, Object> map) {
-        R r = R.builder().build();
+        R r = new R();
         r.putAll(map);
         return r;
     }
 
     public static R ok() {
-        return R.builder().build();
+        return new R();
     }
 
     @Override

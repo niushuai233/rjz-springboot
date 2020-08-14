@@ -8,4 +8,5 @@ public class KeyConstant {
 
     public static final String USER_TOKEN = "user_token";
     public static final String USER_AGENT = "User-Agent";
+    public static final String TOKEN = "token";
 }

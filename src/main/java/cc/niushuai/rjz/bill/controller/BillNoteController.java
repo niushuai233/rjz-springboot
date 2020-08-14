@@ -115,4 +115,14 @@ public class BillNoteController {
         billNoteService.save(billNote);
         return R.ok().put("code", 1);
     }
+
+    @PostMapping("/deleteBillNote")
+    public R deleteBillNote(@RequestBody BillNote billNote) {
+
+        billNote.setIsDelete(0);
+        billNote.setCreateTime(new Date());
+        billNote.setUpdateTime(new Date());
+        billNoteService.updateById(billNote);
+        return R.ok().put("code", 1);
+    }
 }

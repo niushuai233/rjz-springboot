@@ -1,6 +1,6 @@
 package cc.niushuai.rjz.common.cache.impl;
 
-import cc.niushuai.rjz.common.cache.CacheManager;
+import cc.niushuai.rjz.common.cache.ICacheManager;
 import cc.niushuai.rjz.common.cache.bean.CacheManagerEntity;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class CacheManagerImpl implements CacheManager {
+public class ICacheManagerImpl implements ICacheManager {
 
     private static final Map<String, CacheManagerEntity> CACHE_DATAS = new HashMap<>();
 

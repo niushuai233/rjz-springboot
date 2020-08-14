@@ -1,7 +1,9 @@
 package cc.niushuai.rjz.common.config;
 
+import cc.niushuai.rjz.common.interceptors.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -18,5 +20,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowedHeaders("*")
                 .allowedMethods("*");
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new RequestInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/sys/user/login");
     }
 }
