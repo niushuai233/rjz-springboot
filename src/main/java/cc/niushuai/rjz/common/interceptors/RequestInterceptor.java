@@ -8,6 +8,7 @@ import cc.niushuai.rjz.common.util.KeyConstant;
 import cc.niushuai.rjz.user.entity.UserToken;
 import cc.niushuai.rjz.user.service.UserTokenService;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +27,7 @@ public class RequestInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        log.info("req url - {}", request.getRequestURL());
+        log.info("{} | req url - {}", ServletUtil.getClientIP(request), request.getRequestURL());
 
         // 是否存在token
         String token = request.getHeader(KeyConstant.TOKEN);
