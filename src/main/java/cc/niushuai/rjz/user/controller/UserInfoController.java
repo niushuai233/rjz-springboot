@@ -90,6 +90,7 @@ public class UserInfoController {
                             .expireTimeMills(expireTime.toTimestamp().getTime())
                             .userAgent(userAgentString)
                             .isExpire(0)
+                            .createTime(new Date())
                             .build()
             );
             // 缓存token 到 map 拦截器使用
