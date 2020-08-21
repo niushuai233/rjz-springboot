@@ -17,6 +17,10 @@ public class UserInfo {
     public static final String COL_ID = "id";
     public static final String COL_OPEN_ID = "open_id";
     public static final String NICK_NAME = "nick_name";
+    public static final String GENDER = "gender";
+    public static final String COUNTRY = "country";
+    public static final String PROVINCE = "province";
+    public static final String CITY = "city";
     public static final String AVATAR_URL = "avatar_url";
     public static final String COL_LAST_LOGIN_TIME = "last_login_time";
     public static final String COL_IS_DELETE = "is_delete";
@@ -41,6 +45,31 @@ public class UserInfo {
      */
     @TableField(value = "avatar_url")
     private String avatarUrl;
+
+    /**
+     * 性别
+     */
+    @TableField(value = "gender")
+    private String gender;
+
+    /**
+     * 国家
+     */
+    @TableField(value = "country")
+    private String country;
+
+    /**
+     * 省份
+     */
+    @TableField(value = "province")
+    private String province;
+
+    /**
+     * 城市
+     */
+    @TableField(value = "city")
+    private String city;
+
     /**
      * 上次登陆时间
      */

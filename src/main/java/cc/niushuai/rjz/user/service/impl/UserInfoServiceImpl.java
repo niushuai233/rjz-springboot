@@ -2,6 +2,7 @@ package cc.niushuai.rjz.user.service.impl;
 
 import cc.niushuai.rjz.category.entity.BillCategory;
 import cc.niushuai.rjz.category.mapper.BillCategoryMapper;
+import cc.niushuai.rjz.common.enums.GenderEnum;
 import cc.niushuai.rjz.user.entity.DefaultCategory;
 import cc.niushuai.rjz.user.entity.UserInfo;
 import cc.niushuai.rjz.user.mapper.UserInfoMapper;
@@ -36,11 +37,18 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         if (user != null) {
             // 存在该openid 直接返回即可
             userInfo.setId(user.getId());
+            user.setNickName(userInfo.getNickName());
+            user.setGender(GenderEnum.getGender(userInfo.getGender()));
+            user.setAvatarUrl(userInfo.getAvatarUrl());
+            user.setCountry(userInfo.getCountry());
+            user.setProvince(userInfo.getProvince());
+            user.setCity(userInfo.getCity());
             user.setLastLoginTime(new Date());
             baseMapper.updateById(user);
             // 更新上次登陆时间
         } else {
             // 不存在该openid 新增即可
+            userInfo.setGender(GenderEnum.getGender(userInfo.getGender()));
             userInfo.setIsDelete(1);
             userInfo.setCreateTime(new Date());
             userInfo.setLastLoginTime(new Date());
