@@ -75,10 +75,10 @@ public class BillNoteController {
 
             // 对时间进行排序
             Collection<BillNoteVo> billNoteVos = tmpMap.values();
-            CollectionUtil.sort(billNoteVos, (o1, o2) -> {
+            billNoteVos = CollectionUtil.sort(billNoteVos, (o1, o2) -> {
                 int v1 = Long.valueOf(o1.getTime().replace("-", "")).intValue();
                 int v2 = Long.valueOf(o2.getTime().replace("-", "")).intValue();
-                return v1 - v2;
+                return v2 - v1;
             });
             resultMap.put("billNoteList", billNoteVos);
 
