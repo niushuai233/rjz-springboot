@@ -32,7 +32,7 @@ public class RequestInterceptor implements HandlerInterceptor {
         // 是否存在token
         String token = request.getHeader(KeyConstant.TOKEN);
         if (StrUtil.isEmpty(token)) {
-            return false;
+            throw new BizException(ResultStatusEnum.TOKEN_NOT_EXIST);
         }
         log.info("token: {}", token);
 
