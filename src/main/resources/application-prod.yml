@@ -2,6 +2,10 @@ server:
   port: 9091
   servlet:
     context-path: /api
+niushuai:
+  rjz:
+    # spring cron 不支持 L W D
+    excel-cron: 0 30 21 28-31 * ?
 wechat:
   account: gh_0f38c1055be5
   appid: wxd484501fb9ebeb22
@@ -14,6 +18,17 @@ spring:
     username: root
     password: Shuairr1215.
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1
+  # 邮件
+  mail:
+    # 主机
+    protocol: smtp
+    host: smtp.qq.com
+    username: shuai.niu@foxmail.com
+    password: xggumcsfhbhthhii
+    port: 465
+# 日志
 logging:
   file:
     name: ./logs/${random.uuid}.log
