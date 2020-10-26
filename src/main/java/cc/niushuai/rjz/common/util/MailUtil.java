@@ -1,6 +1,7 @@
 package cc.niushuai.rjz.common.util;
 
 import cn.hutool.core.util.CharsetUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author ns
  * @date 2020/10/26
  */
+@Slf4j
 public class MailUtil {
 
     private static JavaMailSenderImpl javaMailSender = (JavaMailSenderImpl) ApplicationContextUtils.getBean(JavaMailSender.class);
@@ -58,6 +60,14 @@ public class MailUtil {
         // 记录错误日志信息
         String remark = "";
         try {
+
+
+            if (null == emails || emails.length == 0) {
+                log.error("title: {}, content: {}", title, content);
+                log.error("email为null 不发送邮件通知");
+                return;
+            }
+
 
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             JavaMailSenderImpl sender = (JavaMailSenderImpl) javaMailSender;
@@ -111,6 +121,12 @@ public class MailUtil {
         // 记录错误日志信息
         String remark = "";
         try {
+
+            if (null == emails || emails.length == 0) {
+                log.error("title: {}, content: {}", title, content);
+                log.error("email为null 不发送邮件通知");
+                return;
+            }
 
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
@@ -182,6 +198,12 @@ public class MailUtil {
      **/
     public static void sendMimeMessageWithAttachFile(String title, String content, String fileName, InputStream attachFileStream, String... emails) {
 
+        if (null == emails || emails.length == 0) {
+            log.error("title: {}, content: {}, fileName: {}", title, content, fileName);
+            log.error("email为null 不发送邮件通知");
+            return;
+        }
+
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, CharsetUtil.UTF_8);
@@ -214,6 +236,11 @@ public class MailUtil {
      **/
     public static void sendMimeMessageWithAttachFile(String title, String content, File attachFile, String... emails) {
 
+        if (null == emails || emails.length == 0) {
+            log.error("title: {}, content: {}", title, content);
+            log.error("email为null 不发送邮件通知");
+            return;
+        }
 
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
