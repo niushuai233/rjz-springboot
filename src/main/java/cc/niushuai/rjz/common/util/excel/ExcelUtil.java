@@ -1,12 +1,9 @@
 package cc.niushuai.rjz.common.util.excel;
 
-import cc.niushuai.rjz.bill.entity.BillNote;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import io.netty.util.internal.StringUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
@@ -736,7 +733,6 @@ public class ExcelUtil implements Serializable {
      * <p>不导出 只读取 返回workbook</p>
      * <p>从ExcelField读取字段作为表头</p>
      *
-     * @param outFilePath 磁盘位置
      * @param list        待导出数据
      * @param clazz       JavaBean类型
      * @return void
@@ -744,13 +740,10 @@ public class ExcelUtil implements Serializable {
      * @author ns
      * @date 2019/12/7 10:54
      **/
-    public static <T> Workbook getWorkBook(String outFilePath, List<T> list, Class<T> clazz, String jsonAttr) throws Exception {
-        if (StrUtil.isEmpty(outFilePath)) {
-            throw new RuntimeException("导出磁盘位置不能为空");
-        }
+    public static <T> Workbook getWorkBook(List<T> list, Class<T> clazz, String jsonAttr) throws Exception {
 
         ExcelParam excelParam = new ExcelParam();
-        excelParam.setOutFilePath(outFilePath);
+        excelParam.setOutFilePath(null);
         excelParam.setList(list);
         excelParam.setClazz(clazz);
 

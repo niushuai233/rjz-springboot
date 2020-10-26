@@ -4,6 +4,8 @@ server:
     context-path: /api
 niushuai:
   rjz:
+    title: rjz账单-
+    content: rjz账单-
     # spring cron 不支持 L W D
     excel-cron: 0 30 21 28-31 * ?
 wechat:

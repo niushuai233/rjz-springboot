@@ -22,6 +22,7 @@ public class UserInfo {
     public static final String PROVINCE = "province";
     public static final String CITY = "city";
     public static final String AVATAR_URL = "avatar_url";
+    public static final String EMAIL = "email";
     public static final String COL_LAST_LOGIN_TIME = "last_login_time";
     public static final String COL_IS_DELETE = "is_delete";
     public static final String COL_CREATE_TIME = "create_time";
@@ -69,6 +70,12 @@ public class UserInfo {
      */
     @TableField(value = "city")
     private String city;
+
+    /**
+     * 邮箱
+     */
+    @TableField(value = "email")
+    private String email;
 
     /**
      * 上次登陆时间

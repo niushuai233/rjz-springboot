@@ -4,6 +4,8 @@ server:
     context-path: /api
 niushuai:
   rjz:
+    title: rjz账单-
+    content: rjz账单-
     # spring cron 不支持 L W D
     excel-cron: 0 30 21 28-31 * ?
 wechat:
@@ -13,6 +15,7 @@ wechat:
 spring:
   application:
     name: rjz-springboot
+  # 数据源
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/rjz_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true&allowMultiQueries=true
     username: root

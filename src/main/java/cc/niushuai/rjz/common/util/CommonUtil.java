@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ns
@@ -154,5 +152,58 @@ public class CommonUtil {
             resultMap.put(invoke, val);
         }
         return resultMap;
+    }
+
+
+    /**
+     * 在当月是否是最后一天
+     *
+     * @return boolean
+     *
+     * @author ns
+     * @date 2020/10/26 17:26
+     **/
+    public static boolean todayIsLastDay() {
+
+        return dayIsLastDay(new Date());
+    }
+
+    /**
+     * 在当月是否是最后一天
+     *
+     * @param day
+     * @return boolean
+     *
+     * @author ns
+     * @date 2020/10/26 17:26
+     **/
+    public static boolean dayIsLastDay(Date day) {
+
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(day);
+
+        return instance.get(Calendar.DAY_OF_MONTH) == instance.getActualMaximum(Calendar.DATE);
+    }
+
+    /**
+     * 指定月份是否是最后一天
+     *
+     * @param day
+     * @param month
+     * @return boolean
+     *
+     * @author ns
+     * @date 2020/10/26 17:26
+     **/
+    public static boolean dayIsLastDay(Date day, int month) {
+
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(day);
+
+        Calendar compareInstance = Calendar.getInstance();
+        compareInstance.setTime(new Date());
+        compareInstance.set(Calendar.MONTH, month - 1);
+
+        return instance.get(Calendar.DAY_OF_MONTH) == compareInstance.getActualMaximum(Calendar.DATE);
     }
 }

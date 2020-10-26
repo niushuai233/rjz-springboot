@@ -1,6 +1,8 @@
 package cc.niushuai.rjz.common.util;
 
 import cn.hutool.core.util.CharsetUtil;
+import org.apache.commons.compress.utils.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -179,7 +182,6 @@ public class MailUtil {
      **/
     public static void sendMimeMessageWithAttachFile(String title, String content, String fileName, InputStream attachFileStream, String... emails) {
 
-
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, CharsetUtil.UTF_8);
@@ -188,10 +190,12 @@ public class MailUtil {
             helper.setSubject(title);
             helper.setText(content, true);
 
-            helper.addAttachment(fileName, new InputStreamResource(attachFileStream));
+            helper.addAttachment(fileName, new ByteArrayResource(IOUtils.toByteArray(new InputStreamResource(attachFileStream).getInputStream())));
 
             javaMailSender.send(mimeMessage);
         } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

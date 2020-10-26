@@ -1,5 +1,6 @@
 package cc.niushuai.rjz.bill.entity;
 
+import cc.niushuai.rjz.common.util.excel.ExcelField;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -50,6 +51,7 @@ public class BillNote {
     /**
      * 分类id
      */
+    @ExcelField(title = "类别", order = 0)
     @TableField(value = "category_name")
     private String categoryName;
     /**
@@ -80,11 +82,13 @@ public class BillNote {
     /**
      * 单据金额
      */
+    @ExcelField(title = "金额", order = 2)
     @TableField(value = "price")
     private String price;
     /**
-     * 单据金额
+     * 单据金额说明
      */
+    @ExcelField(title = "明细", order = 1)
     @TableField(value = "pay_income_note")
     private String payIncomeNote;
     /**
