@@ -1,6 +1,7 @@
 package cc.niushuai.rjz.common.util;
 
 import cn.hutool.core.util.CharsetUtil;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -142,6 +144,56 @@ public class MailUtil {
     public static void sendMimeMessageWithAttachFile(String title, String content, File attachFile, List<String> emailList) {
 
         sendMimeMessageWithAttachFile(title, content, attachFile, CommonUtil.list2StringArray(emailList));
+    }
+
+    /**
+     * 带附件的发送邮件
+     *
+     * @param title
+     * @param content
+     * @param fileName
+     * @param attachFileStream
+     * @param emailList
+     * @return void
+     *
+     * @author ns
+     * @date 2020/10/26 16:17
+     **/
+    public static void sendMimeMessageWithAttachFile(String title, String content, String fileName, InputStream attachFileStream, List<String> emailList) {
+
+        sendMimeMessageWithAttachFile(title, content, fileName, attachFileStream, CommonUtil.list2StringArray(emailList));
+    }
+
+    /**
+     * 带附件的发送邮件
+     *
+     * @param title
+     * @param content
+     * @param fileName
+     * @param attachFileStream
+     * @param emails
+     * @return void
+     *
+     * @author ns
+     * @date 2020/10/26 16:17
+     **/
+    public static void sendMimeMessageWithAttachFile(String title, String content, String fileName, InputStream attachFileStream, String... emails) {
+
+
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, CharsetUtil.UTF_8);
+            helper.setFrom(javaMailSender.getUsername());
+            helper.setTo(emails);
+            helper.setSubject(title);
+            helper.setText(content, true);
+
+            helper.addAttachment(fileName, new InputStreamResource(attachFileStream));
+
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
