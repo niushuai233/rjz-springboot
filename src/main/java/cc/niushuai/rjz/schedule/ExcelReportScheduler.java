@@ -51,7 +51,7 @@ public class ExcelReportScheduler {
     public void run() {
 
         // 最后一天 才执行
-        if (!CommonUtil.todayIsLastDay()) {
+        if (CommonUtil.todayIsLastDay()) {
 
             List<UserInfo> list = userInfoService.list();
 
