@@ -15,6 +15,7 @@ import cc.niushuai.rjz.user.service.UserInfoService;
 import cc.niushuai.rjz.user.service.UserTokenService;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.useragent.UserAgent;
@@ -72,8 +73,8 @@ public class UserInfoController {
             throw new BizException(ResultStatusEnum.WX_CODE_SESSION_FAILURE);
         }
 
-        String loginResult = userInfoService.login(userInfo);
-        if (StrUtil.isEmpty(loginResult)) {
+        UserInfo loginResult = userInfoService.login(userInfo);
+        if (null != loginResult) {
             // 生成token
             String userAgentString = request.getHeader(KeyConstant.USER_AGENT);
             UserAgent userAgent = UserAgentUtil.parse(userAgentString);
@@ -93,6 +94,7 @@ public class UserInfoController {
                             .createTime(new Date())
                             .build()
             );
+            userInfo.setEmail(loginResult.getEmail());
             // 缓存token 到 map 拦截器使用
             Map<String, UserToken> dataByKey = (Map<String, UserToken>) ICacheManager.getCacheDataByKey(KeyConstant.USER_TOKEN);
             if (null == dataByKey) {
@@ -105,5 +107,19 @@ public class UserInfoController {
         }
 
         return R.ok().put("user", userInfo);
+    }
+
+    @RequestMapping("/updateUserEmail")
+    public R updateUserEmail(@RequestBody UserInfo userInfo) {
+
+        if (!Validator.isEmail(userInfo.getEmail())) {
+
+            // 非邮件地址
+            return R.error("请输入正确的邮箱地址");
+        }
+
+        boolean update = userInfoService.updateById(userInfo);
+
+        return update ? R.ok() : R.error("啊哦, 更新失败, 请联系作者@qq 1225803134");
     }
 }

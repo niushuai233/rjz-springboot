@@ -25,7 +25,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     private BillCategoryMapper billCategoryMapper;
 
     @Override
-    public String login(UserInfo userInfo) {
+    public UserInfo login(UserInfo userInfo) {
 
         QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper
@@ -57,7 +57,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             // 添加默认分类
             addDefinedCategory(userInfo);
         }
-        return null;
+        return user;
     }
 
     private void addDefinedCategory(UserInfo userInfo) {
