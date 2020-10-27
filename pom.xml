@@ -95,6 +95,7 @@
     </dependencies>
 
     <build>
+        <finalName>rjz.jar</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
