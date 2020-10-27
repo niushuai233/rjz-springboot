@@ -23,6 +23,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-test-query: SELECT 1
+      connection-timeout: 60000
+      validation-timeout: 3000
+      idle-timeout: 30000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 20
+      minimum-idle: 10
+      read-only: false
   # 邮件
   mail:
     # 主机
@@ -38,3 +46,4 @@ logging:
   level:
     root: INFO
     cc.niushuai: DEBUG
+    com.zaxxer.hikari.HikariConfig: DEBUG
