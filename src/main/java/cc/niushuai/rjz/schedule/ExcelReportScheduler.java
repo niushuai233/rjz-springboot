@@ -52,13 +52,15 @@ public class ExcelReportScheduler {
 
         // 最后一天 才执行
         if (CommonUtil.todayIsLastDay()) {
+            log.info("是最后一天");
 
             List<UserInfo> list = userInfoService.list();
 
             if (CollectionUtil.isNotEmpty(list)) {
                 list.forEach(item -> task(item));
             }
-
+        } else {
+            log.info("非最后一天");
         }
     }
 
