@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -121,5 +122,11 @@ public class UserInfoController {
         boolean update = userInfoService.updateById(userInfo);
 
         return update ? R.ok() : R.error("啊哦, 更新失败, 请联系作者@qq 1225803134");
+    }
+
+    @RequestMapping("/getIp")
+    public String getIp(HttpServletRequest req, HttpServletResponse response) {
+
+        return ServletUtil.getClientIP(req);
     }
 }

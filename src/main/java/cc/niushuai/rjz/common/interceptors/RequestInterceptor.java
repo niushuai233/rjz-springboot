@@ -29,6 +29,10 @@ public class RequestInterceptor implements HandlerInterceptor {
 
         log.info("{} | req url - {}", ServletUtil.getClientIP(request), request.getRequestURL());
 
+        if (request.getRequestURL().toString().contains("/wechat/mp/")) {
+            return true;
+        }
+
         // 是否存在token
         String token = request.getHeader(KeyConstant.TOKEN);
         if (StrUtil.isEmpty(token)) {
