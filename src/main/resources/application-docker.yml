@@ -13,19 +13,12 @@ wechat:
   account: gh_0f38c1055be5
   appid: wxd484501fb9ebeb22
   appsecret: 7aac14ef8476bd36a6e45a3ff8a4b1de
-#公众号配置
-wx:
-  mp:
-    app-id: wx53f824b370901a05
-    secret: 460ee51fdb4edcf26dac5101abb8ecd5
-    aes-key: XU0sZTr2zl09Hd2CWBEtiHYLEDZqIfRuz902uMrFxXO
-    token: rjzss
 spring:
   application:
     name: rjz-springboot
   # 数据源
   datasource:
-    url: jdbc:mysql://192.168.207.128:3306/rjz_db_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true&allowMultiQueries=true
+    url: jdbc:mysql://172.17.0.2:3306/rjz_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true&allowMultiQueries=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -45,7 +38,7 @@ spring:
     protocol: smtp
     host: smtp.qq.com
     username: shuai.niu@foxmail.com
-    password: xggumcsfhbhthhii
+    password: cggumcsfhbhthhii
     port: 465
 # 日志
 logging:

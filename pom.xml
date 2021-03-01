@@ -92,12 +92,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>wx-java-mp-spring-boot-starter</artifactId>
-            <version>3.8.0</version>
-        </dependency>
-
     </dependencies>
 
     <build>
